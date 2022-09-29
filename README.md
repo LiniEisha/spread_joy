@@ -1,17 +1,3 @@
 # spread_joy
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# spread_joy
+The idea of creating such software came up because, when some people watch a video on social media to relax or get motivated, they keep watching for hours but if we listen to a story it won’t happen, and this can save time. This is a major problem for the young generation, they might want to watch one or two videos but as social media keep suggesting videos people spend hours watching them
