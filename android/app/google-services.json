@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "308993714405",
+    "project_id": "spreadjoy-fa489",
+    "storage_bucket": "spreadjoy-fa489.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308993714405:android:e96df12054ac9a234c4c0c",
+        "android_client_info": {
+          "package_name": "com.example.spread_joy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308993714405-frd1mtmpjq66muhom08up0gsi0bn5kkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2pvkGQ39-FFVJ2d69LqVwquS5oj7Ucmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308993714405-frd1mtmpjq66muhom08up0gsi0bn5kkm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "308993714405-9cc4162qckugf1adefjjm9g1gbvh3t5j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.spreadJoy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
