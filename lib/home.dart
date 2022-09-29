@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   Future setAudio() async {
     final player = AudioCache(prefix: 'assets/');
     final url = await player.load('audio01.mp4');
-    audioPlayer.setUrl(url.path, isLocal: true);
+    //audioPlayer.setUrl(url.path, isLocal: true);
   }
 
   getStoriesList() async {

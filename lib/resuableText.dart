@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-TextField reusableTextField(String text, IconData icon, bool isPasswordType,
+TextField reusableText(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
     controller: controller,
@@ -8,19 +8,19 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
     cursorColor: Colors.white,
-    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+    style: TextStyle(color: Colors.white.withOpacity(0.8)),
     decoration: InputDecoration(
       prefixIcon: Icon(
         icon,
         color: Colors.white70,
       ),
       labelText: text,
-      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+      labelStyle: TextStyle(color: Colors.white.withOpacity(0.8)),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.never,
-      fillColor: Colors.white.withOpacity(0.3),
+      fillColor: Colors.white.withOpacity(0.4),
       border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(28.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
     keyboardType: isPasswordType
@@ -29,12 +29,12 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
-Container firebaseButton(BuildContext context, String title, Function onTap) {
+Container resuableButton(BuildContext context, String title, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
-    height: 70,
+    height: 65,
     margin: const EdgeInsets.fromLTRB(0, 5, 0, 10),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(70)),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(28.0)),
     child: ElevatedButton(
       onPressed: () {
         onTap();
@@ -52,7 +52,7 @@ Container firebaseButton(BuildContext context, String title, Function onTap) {
             return Colors.white;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)))),
     ),
   );
 }

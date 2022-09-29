@@ -55,31 +55,22 @@ class _SignupState extends State<Signup> {
                       margin: EdgeInsets.only(left: 35, right: 35),
                       child: Column(
                         children: [
-                          reusableTextField(
-                              "Enter UserName",
-                              Icons.person_outline,
-                              false,
-                              _userNameTextController),
+                          reusableText("Enter UserName", Icons.person_outline,
+                              false, _userNameTextController),
                           const SizedBox(
                             height: 20,
                           ),
-                          reusableTextField(
-                              "Enter Email Id",
-                              Icons.person_outline,
-                              false,
-                              _emailTextController),
+                          reusableText("Enter Email Id", Icons.person_outline,
+                              false, _emailTextController),
                           const SizedBox(
                             height: 20,
                           ),
-                          reusableTextField(
-                              "Enter Password",
-                              Icons.lock_outlined,
-                              true,
-                              _passwordTextController),
+                          reusableText("Enter Password", Icons.lock_outlined,
+                              true, _passwordTextController),
                           const SizedBox(
                             height: 20,
                           ),
-                          firebaseButton(context, "Sign Up", () {
+                          resuableButton(context, "Sign Up", () {
                             FirebaseAuth.instance
                                 .createUserWithEmailAndPassword(
                                     email: _emailTextController.text,

@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                       margin: EdgeInsets.only(left: 35, right: 35),
                       child: Column(
                         children: [
-                          reusableTextField(
+                          reusableText(
                               "Enter UserName",
                               Icons.person_outline,
                               false,
@@ -60,16 +60,16 @@ class _LoginState extends State<Login> {
                           const SizedBox(
                             height: 20,
                           ),
-                          reusableTextField(
+                          reusableText(
                               "Enter Password",
                               Icons.lock_outline,
                               true,
                               _passwordTextController),
                           const SizedBox(
-                            height: 5,
+                            height: 20,
                           ),
                           // forgetPassword(context),
-                          firebaseButton(context, "Sign In", () {
+                          resuableButton(context, "Sign In", () {
                             FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: _emailTextController.text,
