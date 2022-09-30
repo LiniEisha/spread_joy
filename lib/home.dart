@@ -6,7 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-
+import 'package:flutter/foundation.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class Home extends StatefulWidget {
@@ -25,13 +26,18 @@ class _HomeState extends State<Home> {
   String image = "";
   String audio = "";
   final audioPlayer = AudioPlayer();
+  PlayerState audioPlayerState = PlayerState.paused;
+  late AudioCache audioCache;
+  final OnAudioQuery _audioQuery = OnAudioQuery();
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
+  String filePath = 'audio01.mp4';
 
   @override
   void initState() {
     super.initState();
+    requestStoragePermission();
     stories = [
       "Title",
       "Category",
@@ -40,11 +46,11 @@ class _HomeState extends State<Home> {
       "Audio",
     ];
 
-    setAudio();
-
+    final audioPlayer = AudioPlayer();
+    audioPlayer.setSourceAsset("");
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
-        isPlaying = state == PlayerState.playing;
+        audioPlayerState = state;
       });
     });
 
@@ -61,14 +67,24 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Future setAudio() async {
-    final player = AudioCache(prefix: 'assets/');
-    final url = await player.load('audio01.mp4');
-    //audioPlayer.setUrl(url.path, isLocal: true);
+  playAudio() async {
+    await audioPlayer.play(UrlSource(filePath));
+  }
+
+  pauseAudio() async {
+    await audioPlayer.pause();
   }
 
   getStoriesList() async {
     return await FirebaseFirestore.instance.collection('StoryCollection').get();
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.release();
+    audioPlayer.dispose();
+    audioCache.clearAll();
+    super.dispose();
   }
 
   @override
@@ -155,18 +171,16 @@ class _HomeState extends State<Home> {
                                                           "category"])
                                                       : ""),
                                               trailing: IconButton(
-                                                icon: Icon(
-                                                  isPlaying
-                                                      ? Icons.pause
-                                                      : Icons.play_arrow,
-                                                ),
-                                                iconSize: 40,
-                                                onPressed: () async {
-                                                  if (isPlaying) {
-                                                    await audioPlayer.pause();
-                                                  } else {
-                                                    await audioPlayer.resume();
-                                                  }
+                                                icon: Icon(audioPlayerState ==
+                                                        PlayerState.playing
+                                                    ? Icons.pause_rounded
+                                                    : Icons.play_arrow_rounded),
+                                                onPressed: () {
+                                                  audioPlayerState ==
+                                                          PlayerState.playing
+                                                      ? pauseAudio()
+                                                      : playAudio();
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -227,4 +241,17 @@ class _HomeState extends State<Home> {
   //             ],
   //           )));
   // }
+
+  void requestStoragePermission() async {
+    //only if the platform is not web, coz web have no permissions
+    if (!kIsWeb) {
+      bool permissionStatus = await _audioQuery.permissionsStatus();
+      if (!permissionStatus) {
+        await _audioQuery.permissionsRequest();
+      }
+
+      //ensure build method is called
+      setState(() {});
+    }
+  }
 }
