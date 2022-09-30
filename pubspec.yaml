@@ -63,6 +63,7 @@ dependencies:
   image_cropper: ^3.0.0
   syncfusion_flutter_datagrid: ^20.2.50
   on_audio_query: ^2.6.1
+  permission_handler: ^10.0.2
 
 flutter_icons:
   android: "launcher_icon"

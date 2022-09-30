@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
-  String filePath = 'audio01.mp4';
+  String filePath = 'assets/audios/audio01.mp4';
 
   @override
   void initState() {
@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
 
     final audioPlayer = AudioPlayer();
     audioPlayer.setSourceAsset("");
+    //audioCache = AudioCache(fixedPlayer: audioPlayer);
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
         audioPlayerState = state;
@@ -182,6 +183,11 @@ class _HomeState extends State<Home> {
                                                       : playAudio();
                                                   setState(() {});
                                                 },
+                                                // onPressed: () async {
+                                                //   final player = AudioPlayer();
+                                                //   await player.play(AssetSource(
+                                                //       'audios/audio01.mp4'));
+                                                // },
                                               ),
                                             ),
                                           ),

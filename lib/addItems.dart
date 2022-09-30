@@ -4,7 +4,7 @@ import 'dart:io';
 import 'tabView.dart';
 import 'firestoreService.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
+import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -249,15 +249,23 @@ class MyCustomFormState extends State<MyCustomForm> {
                                                         'No file selected')),
                                               );
                                               return null;
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                    content:
+                                                        Text('file Selected')),
+                                              );
+                                              imagePath =
+                                                  file.files.single.path!;
+                                              final fileName =
+                                                  file.files.single.name;
+                                              storage
+                                                  .uploadImage(
+                                                      imagePath, fileName)
+                                                  .then(
+                                                      (value) => print('Done'));
                                             }
-                                            imagePath = file.files.single.path!;
-                                            final fileName =
-                                                file.files.single.name;
-
-                                            storage
-                                                .uploadImage(
-                                                    imagePath, fileName)
-                                                .then((value) => print('Done'));
                                           },
                                           child: Text("Select Image"))
                                     ],
@@ -287,13 +295,23 @@ class MyCustomFormState extends State<MyCustomForm> {
                                                     Text('No file selected')),
                                           );
                                           return null;
-                                        }
-                                        audioPath = file.files.single.path!;
-                                        final fileName = file.files.single.name;
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text('file Selected')),
+                                          );
+                                          audioPath = file.files.single.path!;
+                                          final fileName =
+                                              file.files.single.name;
+                                          const SnackBar(
+                                              content: Text('Image Selected'));
 
-                                        storage
-                                            .uploadAudio(audioPath, fileName)
-                                            .then((value) => print('Done'));
+                                          storage
+                                              .uploadAudio(audioPath, fileName)
+                                              .then((value) => print('Done'));
+                                        }
+                                        //Text();
                                       },
                                       child: Text("Add the audio"),
                                     ),
